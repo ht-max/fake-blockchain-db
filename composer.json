@@ -1,0 +1,28 @@
+{
+    "name": "ht.maks/database-blockchain",
+    "description": "",
+    "type":"library",
+    "keywords":["blockchain"],
+    "license":"MIT",
+    "authors": [
+        {
+            "name":"Max Sychov",
+            "email":"ht.maks@gmail.com",
+            "role":"Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/wdalmut/simple-mvc"
+        }
+    ]
+}
