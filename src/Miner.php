@@ -25,7 +25,7 @@ final class Miner
         $this->hashDifficulty = $hashDifficulty;
     }
 
-    public function mineBlock(string $data): Block
+    public function mineBlock(string $data, string $key = null): Block
     {
         $nonce = 0;
         $lastBlock = $this->blockchain->last();

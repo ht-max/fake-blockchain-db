@@ -21,10 +21,10 @@ final class Node
      */
     private $p2pServer;
 
-    public function __construct(Miner $miner, P2pServer $p2pServer)
+    public function __construct(Miner $miner  /** , P2pServer $p2pServer **/)
     {
         $this->miner = $miner;
-        $this->p2pServer = $p2pServer;
+//        $this->p2pServer = $p2pServer;
     }
 
     /**
@@ -35,10 +35,10 @@ final class Node
         return $this->miner->blockchain()->blocks();
     }
 
-    public function mineBlock(string $data): Block
+    public function mineBlock(string $data, string $key = null): Block
     {
-        $block = $this->miner->mineBlock($data);
-        $this->p2pServer->broadcast(new Message(Message::BLOCKCHAIN, serialize($this->blockchain()->withLastBlockOnly())));
+        $block = $this->miner->mineBlock($data, $key);
+//        $this->p2pServer->broadcast(new Message(Message::BLOCKCHAIN, serialize($this->blockchain()->withLastBlockOnly())));
 
         return $block;
     }
