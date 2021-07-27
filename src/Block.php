@@ -14,7 +14,7 @@ final class Block implements JsonSerializable
     /**
      * @var int
      */
-    private $id;
+    private $index;
 
     /**
      * @var string
@@ -47,7 +47,7 @@ final class Block implements JsonSerializable
     private $nonce;
 
     public function __construct(
-        int $id,
+        int $index,
         string $hash,
         string $previousHash,
         DateTimeImmutable $createdAt,
@@ -55,7 +55,7 @@ final class Block implements JsonSerializable
         int $difficulty,
         int $nonce
     ) {
-        $this->id = $id;
+        $this->index = $index;
         $this->hash = $hash;
         $this->previousHash = $previousHash;
         $this->createdAt = $createdAt;
@@ -71,7 +71,7 @@ final class Block implements JsonSerializable
 
     public function isNextValid(self $block): bool
     {
-        if ($block->id !== $this->id + 1) {
+        if ($block->index !== $this->index + 1) {
             return false;
         }
 
@@ -79,7 +79,7 @@ final class Block implements JsonSerializable
             return false;
         }
 
-        if ($block->hash !== self::calculateHash($block->id, $block->previousHash, $block->createdAt, $block->data, $block->difficulty, $block->nonce)) {
+        if ($block->hash !== self::calculateHash($block->index, $block->previousHash, $block->createdAt, $block->data, $block->difficulty, $block->nonce)) {
             return false;
         }
 
@@ -88,7 +88,7 @@ final class Block implements JsonSerializable
 
     public function isEqual(self $block): bool
     {
-        return $this->id === $block->id
+        return $this->index === $block->index
             && $this->hash === $block->hash
             && $this->previousHash === $block->previousHash
             && $this->createdAt->getTimestamp() === $block->createdAt->getTimestamp()
@@ -115,7 +115,7 @@ final class Block implements JsonSerializable
 
     public function index(): int
     {
-        return $this->id;
+        return $this->index;
     }
 
     public function data(): string
@@ -140,7 +140,7 @@ final class Block implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->id,
+            'index' => $this->index,
             'hash' => $this->hash,
             'previousHash' => $this->previousHash,
             'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),

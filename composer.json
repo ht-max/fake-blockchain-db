@@ -4,6 +4,7 @@
     "type":"library",
     "keywords":["blockchain"],
     "license":"MIT",
+    "version": "0.1.0",
     "authors": [
         {
             "name":"Max Sychov",
